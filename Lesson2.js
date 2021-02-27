@@ -126,9 +126,11 @@ function power(val, pow) {
         return 1;
     } else if (pow === 1) {
         return val;
+    } else if (pow % 1) {
+        return NaN;
     } else if (pow < 0) {
         return (1 / val) * power(val, pow + 1);
-    }
+    } 
 
     return val * power(val, pow - 1);
 }
