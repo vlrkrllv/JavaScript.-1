@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            td {text-align: center;}
+            tr.inverted, td.inverted {transform: rotate(180deg);}
+
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var whiteRook = "&#9814;";
+            var whiteKnight = "&#9816;";
+            var whiteBishop = "&#9815;";
+            var whiteQueen = "&#9813;";
+            var whiteKing = "&#9812;";
+            var whitePawn = "&#9817;";
+
+            var blackRook = "&#9820;";
+            var blackKnight = "&#9822;";
+            var blackBishop = "&#9821;";
+            var blackQueen = "&#9819;";
+            var blackKing = "&#9818;";
+            var blackPawn = "&#9823;";
+
+            var figuresWhite = [whiteRook, whiteKnight, whiteBishop, whiteQueen, whiteKing, whiteBishop, whiteKnight, whiteRook];
+            var figuresBlack = [blackRook, blackKnight, blackBishop, blackQueen, blackKing, blackBishop, blackKnight, blackRook];
+
+            var table = document.createElement("table");
+            function addLetters(table, className = "") {
+               var tr = document.createElement("tr");
+               if (className) {
+                tr.classList.add(className);
+               }
+               table.append(tr);
+               for(var j = 0; j < 10; j++) {
+                 var td = document.createElement("td");
+                 if(j > 0 && j < 9) {
+                    td.innerHTML = String.fromCharCode("A".charCodeAt(0) + j - 1);
+                 }
+                 tr.append(td);   
+            }
+        }
+            var tr, td;
+            addLetters(table, "inverted");
+            for(var i = 0; i < 8; i++){
+                tr = document.createElement("tr");
+                table.append(tr);
+                td = document.createElement("td");
+                td.innerHTML = 8 - i;
+                tr.append(td);
+                for(var j=0; j < 8; j++){
+                    td = document.createElement("td");
+                    if(i == 0) {
+                        td.innerHTML = figuresBlack[j];
+                        td.classList.add("inverted");
+                    } else if (i == 1) {
+                        td.innerHTML = blackPawn;
+                        td.classList.add("inverted"); 
+                    } else if (i == 6) {
+                        td.innerHTML = whitePawn;
+                    } else if (i == 7) {
+                        td.innerHTML = figuresWhite[j];
+                    }
+                    if ((j + i % 2) % 2 != 0) {
+                    td.style = "background-color: saddlebrown; width: 30px; height: 30px; font-size: 24px";
+                    } else {
+                        td.style = "background-color: wheat; font-size: 24px";
+                    }
+                    tr.append(td);
+                }
+                td = document.createElement("td");
+                td.classList.add("inverted");
+                td.innerHTML = 8 - i;
+                tr.append(td);
+            }
+            addLetters(table); 
+            document.body.append(table);
+        </script>
+    </body>
+</html>
